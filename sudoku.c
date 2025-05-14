@@ -43,11 +43,42 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){ //hacer
+  int a, b ;
 
-    return 1;
+  for (a = 0 ; a < 9 ; a++){ //recorrer filas
+    int fila[10] = {0} ;
+    for (b = 0 ; b < 9 ; b++){
+      int valor = n->sudo[a][b] ;
+      if (valor == 0) continue ;
+      if (fila[valor] == 1) return 0 ;
+      fila[valor] = 1 ;
+    }
+  }
+  for (a = 0 ; a < 9 ; a++){ //recorrer columnas
+    int col[10] = {0} ;
+    for (b = 0 ; b < 9 ; b++){
+      int valor = n->sudo[b][a] ;
+      if (valor == 0) continue ;
+      if (col[valor] == 1) return 0 ;
+      col[valor] = 1 ;
+    }
+  }
+
+  for(int k = 0; k < 9; k++){
+    int box[10] = {0};
+    for(int p = 0; p < 9; p++){
+      int i = 3*(k/3) + (p/3);
+      int j = 3*(k%3) + (p%3);
+      int valor = n->sudo[i][j];
+      if(valor == 0) continue;
+      if(box[valor]) return 0;
+      box[valor] = 1;
+    }
+  }
+  return 1;
 }
 
-List* get_adj_nodes(Node* n){ //LISTO
+List* get_adj_nodes(Node* n){ //LISTO (mirar si cambiar)
   List* list = createList() ;
   int fila = -1, col = -1 ;
   for (int a = 0 ; a < 9 && fila == -1 ; a++){
