@@ -95,7 +95,12 @@ List* get_adj_nodes(Node* n){ //LISTO (mirar si cambiar)
   for (int k = 1 ; k <= 9 ; k++){
     Node* copia = copy(n) ;
     copia->sudo[fila][col] = k ; //se le asigna un numero a la posicion vacia
-    pushBack(list, copia) ;
+    if (is_valid(copia)){
+      pushBack(list, copia) ;
+    }else{
+      free(copia) ;
+    }
+    
   }
   return list;
 }
