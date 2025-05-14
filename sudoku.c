@@ -28,7 +28,6 @@ Node* read_file (char* file_name){
             printf("failed to read data!");
        }
   }
-
   fclose (file);
   return n;
 }
@@ -43,23 +42,39 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
+int is_valid(Node* n){ //hacer
 
     return 1;
 }
 
+List* get_adj_nodes(Node* n){ //LISTO
+  List* list = createList() ;
+  int fila = -1, col = -1 ;
+  for (int a = 0 ; a < 9 && fila == -1 ; a++){
+    for (int b = 0 ; b < 9 && col == -1 ; b++){
+      if (n->sudo[a][b] == 0){
+        fila = a ;
+        col = b ;
+        break ;
+      }
+    }
+  }
+  if (fila == -1 || col == -1) return list ;
 
-List* get_adj_nodes(Node* n){
-    List* list=createList();
-    return list;
+  for (int k = 1 ; k <= 9 ; k++){
+    Node* copia = copy(n) ;
+    copia->sudo[fila][col] = k ; //se le asigna un numero a la posicion vacia
+    pushBack(lista, copia) ;
+  }
+  return list;
 }
 
 
-int is_final(Node* n){
+int is_final(Node* n){ //hacer
     return 0;
 }
 
-Node* DFS(Node* initial, int* cont){
+Node* DFS(Node* initial, int* cont){ //hacer
   return NULL;
 }
 
