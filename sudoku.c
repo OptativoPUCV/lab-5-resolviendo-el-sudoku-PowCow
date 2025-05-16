@@ -78,7 +78,7 @@ int is_valid(Node* n){ //LISTO
   return 1 ;
 }
 
-List* get_adj_nodes(Node* n){ //LISTO (mirar si cambiar)
+List* get_adj_nodes(Node* n){ //LISTO 
   List* list = createList() ;
   int fila = -1, col = -1 ;
   for (int a = 0 ; a < 9 && fila == -1 ; a++){
