@@ -139,7 +139,7 @@ Node* DFS(Node* initial, int* cont){ //Depth First Search (busqueda en profundid
   }
   return NULL ;
 }
-/*Para compilar tuve que usar "gcc sudoku.c list.c -o sudoku" y "./sudoku" 
+/*Para compilar tuve que usar "gcc sudoku.c list.c -o sudoku" y "./sudoku" */
 int main( int argc, char *argv[] ){ 
 
   Node* initial= read_file("s12a.txt");;
@@ -150,4 +150,4 @@ int main( int argc, char *argv[] ){
   print_node(final);
 
   return 0;
-}*/
+}
