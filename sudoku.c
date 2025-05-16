@@ -42,7 +42,7 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){ //hacer
+int is_valid(Node* n){ //LISTO
   int a, b ;
 
   for (a = 0 ; a < 9 ; a++){ //recorrer filas
@@ -64,18 +64,18 @@ int is_valid(Node* n){ //hacer
     }
   }
 
-  for(int k = 0; k < 9; k++){ //recorrer matriz 3x3
-    int box[10] = {0};
-    for(int p = 0; p < 9; p++){
-      int i = 3*(k/3) + (p/3);
-      int j = 3*(k%3) + (p%3);
-      int valor = n->sudo[i][j];
-      if(valor == 0) continue;
-      if(box[valor]) return 0;
-      box[valor] = 1;
+  for(int k = 0 ; k < 9 ; k++){ //recorrer matriz 3x3
+    int box[10] = {0} ;
+    for(int p = 0 ; p < 9 ; p++){
+      int f = 3 * (k / 3) + (p / 3) ;
+      int c = 3 * (k % 3) + (p % 3) ;
+      int valor = n->sudo[f][c] ;
+      if(valor == 0) continue ;
+      if(box[valor]) return 0 ;
+      box[valor] = 1 ;
     }
   }
-  return 1;
+  return 1 ;
 }
 
 List* get_adj_nodes(Node* n){ //LISTO (mirar si cambiar)
@@ -105,7 +105,7 @@ List* get_adj_nodes(Node* n){ //LISTO (mirar si cambiar)
   return list;
 }
 
-int is_final(Node* n){ //hacer
+int is_final(Node* n){ //LISTo
   for (int a = 0 ; a < 9 ; a++){
     for (int b = 0 ; b < 9 ; b++){
       int numerito = n->sudo[a][b] ;
@@ -115,11 +115,33 @@ int is_final(Node* n){ //hacer
   return 1;
 }
 
-Node* DFS(Node* initial, int* cont){ //hacer
-  return NULL;
+Node* DFS(Node* initial, int* cont){ //Depth First Search (busqueda en profundidad)
+  Stack *S = createStack() ;
+  push(S, initial) ;
+
+  while (!is_empty(S)){
+    Node* nodito_Top = top(S) ;
+    pop(S) ;
+    (*cont)++ ;
+
+    if (!is_valid(nodito_Top)) {
+      free(nodito_Top) ;
+      continue ;}
+    if (is_final(nodito_Top)) {
+      free(nodito_Top) ;
+      continue ;}
+
+    List* noditos_Hijos = get_adj_nodes(nodito_Top) ;
+    Node *hijito = first(noditos_Hijos) ;
+    while (hijito != NULL) {
+      push(S, hijito) ;
+      hijito = next(noditos_Hijos) ;
+    }
+    free(noditos_Hijos) ;
+    free(nodito_Top) ;
+  }
+  return NULL ;
 }
-
-
 
 /*
 int main( int argc, char *argv[] ){
