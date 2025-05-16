@@ -127,9 +127,7 @@ Node* DFS(Node* initial, int* cont){ //Depth First Search (busqueda en profundid
     if (!is_valid(nodito_Top)) {
       free(nodito_Top) ;
       continue ;}
-    if (is_final(nodito_Top)) {
-      free(nodito_Top) ;
-      continue ;}
+    if (is_final(nodito_Top)) return nodito_Top ;
 
     List* noditos_Hijos = get_adj_nodes(nodito_Top) ;
     Node *hijito = first(noditos_Hijos) ;
@@ -137,7 +135,6 @@ Node* DFS(Node* initial, int* cont){ //Depth First Search (busqueda en profundid
       push(S, hijito) ;
       hijito = next(noditos_Hijos) ;
     }
-    free(noditos_Hijos) ;
     free(nodito_Top) ;
   }
   return NULL ;
